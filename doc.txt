@@ -1,0 +1,153 @@
+State
+=====
+    remember to call super.*()!
+    GameState.preload()
+        load sprites here
+    GameState.create()
+        create all the objects for the current state
+    GameState.update()
+    GameState.render()
+    Gamestate.fps = false
+        true shows framerate info
+
+    window.game.state.add(key, state)
+    window.game.state.start(key)
+
+Game
+====
+    window.game
+    new Game(width, height, gameState, debug = true)
+        pass in a GameState instance or class
+        disabling debug improves performance
+    Game.world
+        group containing all sprites by default
+
+Graphics
+========
+    Game.makeImage(key, color, width = 32, height = 32)
+        make a simple rectangle placeholder
+        key is the string used to load it in sprite creation
+    Loading an image
+        window.game.loadImage(key, URL);
+    Manual canvas sprite generation
+        let img = document.createElement('canvas');
+        img.width = 32;
+        img.height = 32;
+        let ctx = img.getContext('2d');
+        ctx...
+        window.game.load.image(key, img.toDataURL());
+
+Sprite General
+==============
+    new Sprite(x, y, image = 'default')
+        image text key or some sort of image object
+    Sprite.rotation
+        rotate the image around the anchor
+    Sprite.anchor.setTo(0.5, 0.5)
+        relative to sprite size, useful for positioning
+    Group.bringToTop(Sprite)
+        pull to top of group, e.g.:
+        window.game.world.bringToTop(Sprite)
+
+Sprite Positioning and Movement
+===============================
+    Sprite.anchor.setTo(0.5, 0.5)
+        relative to sprite size, useful for positioning
+
+    Sprite.x, Sprite.y, Sprite.pos
+    Sprite.top, Sprite.bottom, Sprite.left, Sprite.right
+
+    Sprite.dx, Sprite.dy, Sprite.vel
+
+    Sprite.joyconMove(speed, [pad])
+    Sprite.joyconAcc(acc, [pad])
+
+    Sprite.wallClamp()
+        ensure sprite is completely within the world
+
+Sprite Overlap and Collision
+============================
+    Sprite.overlap(that, callback)
+        that is an object, array or Phaser.Group
+        callback(that) this = Sprite
+    Sprite.colide(that)
+        that is an object, array or Phaser.Group
+        applies physics, see Body
+
+Physics Bodies
+==============
+    Sprite.wallBounce = false
+        enables wall bounce with a bounce constant of [1,1]
+
+    Sprite.body
+    Body.bounce: Point
+        rebound factors for x and y
+    Body.drag: number
+        deceleration. Must be lower than acceleration for body to move
+    Body.maxVelocity: number
+    Body.angle
+        angle of current velocity, or previous if stopped
+    Body.immovable
+
+Text
+====
+    window.game.add.text(x, y, text, options)
+        options {
+            font: '12px monospace',
+            fill: '#ffffff',
+            align: 'center'
+        }
+
+    Text.anchor.setTo(0.5, 0)
+        relative to text size, useful for positioning
+    Text.setText('str')
+    Text.text
+
+Button
+======
+    window.game.add.button(x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group)
+
+Menu
+====
+    remember to preload the background sprite!
+    new Menu(x, y, backgroundKey, foreground, font)
+        foreground is a color string for the text
+        font string format: 28px sans
+    Menu.addButton(text, callback)
+        leaving text null or empty skips creating a label
+
+Tilemaps
+========
+    TODO
+
+Joycon
+======
+    automatically selects keyboard or joycon input based on navigator.platform
+    on keyboard
+        A button = Z key
+        B button = X key
+        Y button = C key
+        left axes & p1 axes = arrow keys
+        p2 axes = IJKL
+
+    joycon.a, b, y, l, r, zl, zr, leftStick, rightStick, up, down, left, right
+        boolean
+        leftStick and rightStick refer to stick click buttons
+        up, down, left and right refer to left joycon d-pad buttons
+    joycon.leftAxisX, leftAxisY, rightAxisX, rightAxisY
+        values between -1 and 1
+
+    joycon.p1, p2
+        p1.axisX, axisY
+
+Point
+=====
+    Point.x, Point.y
+    Point.setTo(x, y);
+    Point.getMagnitude(), Point.setMagnitude(r)
+    Point.rotate(0, 0, angle)
+
+Debug and Profiling
+===================
+    window.game.add.plugin(Phaser.Plugin.Debug);
+    game.debug.text('text', 2, 14);

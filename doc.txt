@@ -48,6 +48,7 @@ Sprite General
     Group.bringToTop(Sprite)
         pull to top of group, e.g.:
         window.game.world.bringToTop(Sprite)
+    Sprite.destroy()
 
 Sprite Positioning and Movement
 ===============================

@@ -108,10 +108,10 @@ class Sprite extends Phaser.Sprite {
         }
         if (this.right >= window.game.world.width) {
             this.right = window.game.world.width;
-        }
             if (this.dx > 0) {
                 this.dx = 0;
             }
+        }
     }
 
     arrowMove(speed) {

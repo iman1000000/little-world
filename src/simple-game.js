@@ -83,8 +83,8 @@ class Sprite extends Phaser.Sprite {
         }, this);
     }
 
-    collide(that) {
-        window.game.physics.arcade.collide(this, that);
+    collide(that, process = ()=>{return true;}) {
+        window.game.physics.arcade.collide(this, that, undefined, process);
     }
 
     wallClamp() {

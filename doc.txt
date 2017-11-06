@@ -71,8 +71,9 @@ Sprite Overlap and Collision
     Sprite.overlap(that, callback)
         that is an object, array or Phaser.Group
         callback(that) this = Sprite
-    Sprite.colide(that)
+    Sprite.colide(that, [process(this, that)])
         that is an object, array or Phaser.Group
+        if process is provided and returns false, no collision happens
         applies physics, see Body
 
 Physics Bodies

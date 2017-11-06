@@ -242,6 +242,14 @@ joycon = {
         // TODO
     },
 
+    get axisX() {
+        return this.leftAxisX;
+    },
+
+    get axisY() {
+        return this.leftAxisY;
+    },
+
     p1: {
         get axisX() {
             let up = window.game.input.keyboard.isDown(Phaser.Keyboard.UP);

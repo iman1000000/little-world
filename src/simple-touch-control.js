@@ -56,17 +56,23 @@ class TouchControl extends Sprite {
 }
 
 class TouchPad extends Phaser.Group{
-    constructor(analogX = 86, analogY = 320-86, aX = 500, aY = 320-86) {
+    constructor(analogX = 86, analogY = 320-86, aX = 500, aY = 320-86, bX = 400, bY = 320-86) {
         super(window.game);
         this.analog = new TouchControl(analogX, analogY, 64, 'analog');
         this.aBtn = new TouchControl(aX, aY, 32, 'abtn');
+        this.bBtn = new TouchControl(bX, bY, 32, 'bbtn');
 
         this.add(this.analog);
         this.add(this.aBtn);
+        this.add(this.bBtn);
     }
 
     get a() {
         return this.aBtn.pressed;
+    }
+
+    get b() {
+        return this.bBtn.pressed;
     }
 
     get axisX() {
